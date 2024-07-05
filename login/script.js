@@ -38,7 +38,10 @@ if (botaoRegistrar) {
         const camposVazios = usuario === "" || email === "" || cidade === "" || foto === "" || senha === "" || idade ==="";
 
 /////////////////////////////////////////
-        
+/*
+    Seguinte, consegui fazer a verificação de email existente, 
+    mas quebrei o registro de novos usuarios.
+*/        
         const usuarios_v = JSON.parse(localStorage.getItem('usuarios')) || []
         const procurarEmail = usuarios_v.find((email) => email === usuarios_v.email);
         
