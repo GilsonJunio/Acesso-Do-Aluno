@@ -35,16 +35,41 @@ if (botaoRegistrar) {
 
         let senha = document.getElementById("senha").value;
 
-        if (usuario === "" || email === "" || cidade === "" || foto === "" || senha === "" || idade ===""){
-            alert('Nao podem haver campos vazios')
+        const camposVazios = usuario === "" || email === "" || cidade === "" || foto === "" || senha === "" || idade ==="";
+
+/////////////////////////////////////////
+        
+        const usuarios_v = JSON.parse(localStorage.getItem('usuarios')) || []
+        const procurarEmail = usuarios_v.find((email) => email === usuarios_v.email);
+        
+        function mesmoEmail(email, procurarEmail){
+
+        return email === procurarEmail
+
+        }
+        mesmoEmail(email, procurarEmail)
+
+        if(mesmoEmail = true){
+            alert('Conta com email já registrada!')
         }
         else{
-        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-        usuarios.push({ usuario, email, idade, cidade, foto, senha });
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            usuarios.push({ usuario, email, idade, cidade, foto, senha });
+            localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-        window.location.href = "../login/index.html"            
+            window.location.href = "../login/index.html"            
         }
+
+        
+        console.log(usuarios_v)
+        console.log(camposVazios)
+
+/////////////////////////////////////////
+        if (camposVazios){
+            alert('Nao podem haver campos vazios')
+        }
+
+        
     });
 }
 let botaoLogin = document.getElementById("botao_login");
