@@ -7,20 +7,19 @@ async function carregarDados(){
     console.log(dados)
 
     localStorage.setItem('usuarios',JSON.stringify(dados))
+    console.log(data)
+
+
 }
+
+let container = document.getElementById('container')
 
 if(localStorage.getItem('usuarios') === null){
     carregarDados()
 }
 
 
-
-
-let container = document.getElementById('container')
-
-
 let botaoRegistrar = document.getElementById("botao-registro");
-
 if (botaoRegistrar) {
     botaoRegistrar.addEventListener("click", () => {
         let usuario = document.getElementById("usuario").value;
@@ -37,44 +36,35 @@ if (botaoRegistrar) {
 
         const camposVazios = usuario === "" || email === "" || cidade === "" || foto === "" || senha === "" || idade ==="";
 
-/////////////////////////////////////////
-/*
-    Seguinte, consegui fazer a verificação de email existente, 
-    mas quebrei o registro de novos usuarios.
-*/        
-        const usuarios_v = JSON.parse(localStorage.getItem('usuarios')) || []
-        const procurarEmail = usuarios_v.find((email) => email === usuarios_v.email);
-        
-        function mesmoEmail(email, procurarEmail){
 
-        return email === procurarEmail
+        let usuarios_verificar = JSON.parse(localStorage.getItem('usuarios')) || [] 
+        let procurarEmailIgual = usuarios_verificar.find((usuarios_verificar) => usuarios_verificar.email === email) || [];                
+
+
+        console.log(email)
+        console.log(procurarEmailIgual)
+        console.log(procurarEmailIgual.email)
+        if(email === procurarEmailIgual.email ){
+            alert('EXISTEM EMAILS IGUAIS! FUNCIONOU!')
+            if (camposVazios){
+                alert('Nao podem haver campos vazios')
+            }
 
         }
-        mesmoEmail(email, procurarEmail)
 
-        if(mesmoEmail = true){
-            alert('Conta com email já registrada!')
-        }
         else{
+            alert('NÃO EXISTEM EMAILS IGUAIS')
+            alert('CADASTRO REALIZADO COM SUCESSO')
             let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
             usuarios.push({ usuario, email, idade, cidade, foto, senha });
             localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
             window.location.href = "../login/index.html"            
-        }
-
-        
-        console.log(usuarios_v)
-        console.log(camposVazios)
-
-/////////////////////////////////////////
-        if (camposVazios){
-            alert('Nao podem haver campos vazios')
-        }
-
-        
+        }        
     });
+
 }
+
+
 let botaoLogin = document.getElementById("botao_login");
 if(botaoLogin){ 
     botaoLogin.addEventListener('click', () => {
