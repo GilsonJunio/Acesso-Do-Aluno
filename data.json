@@ -56,7 +56,10 @@
         "cidade": "Parnaíba",
         "foto": "https://lh3.googleusercontent.com/a/ACg8ocJfp28MJtK4szJ-DCFPTKZMMqatWtFQRl1_FgNfC_8fGY4wUaL7=s192-c-mo",
         "senha": "Senha@123"
-      }
+      },
+        {"nome":"Anthony Almeida","email":"anthony.oliveira.almeida@exemplo.com","idade":"22","cidade":"Gentio do Ouro - BA ","foto":"","senha":"Senha@123"
+        
+        }
     ]
   }
   
